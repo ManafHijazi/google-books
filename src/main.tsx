@@ -1,13 +1,17 @@
 import './index.scss';
 
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { RouterProvider } from 'react-router-dom';
 
-import App from './App';
+import MiddlewareHelper from './helpers/Middleware.helper';
+import { router } from './routes';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root'),
+const root = createRoot(document.getElementById('root') as HTMLElement);
+
+root.render(
+  <StrictMode>
+    <RouterProvider router={router} />
+    <MiddlewareHelper />
+  </StrictMode>,
 );
