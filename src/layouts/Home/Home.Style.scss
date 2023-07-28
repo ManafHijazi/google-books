@@ -1,14 +1,10 @@
 .main-layout-wrapper {
   display: flex;
-  position: relative;
+  width: 100%;
 
   .container-wrapper {
     width: 100%;
     min-height: 100vh;
     padding: 6rem 1rem;
-
-    .home-views-wrapper {
-      width: 100%;
-    }
   }
 }

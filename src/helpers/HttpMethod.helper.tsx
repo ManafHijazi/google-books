@@ -14,9 +14,11 @@ const renderByStatusCode = (statusCode: number) => {
       break;
 
     case 403:
+      // Navigate to 403 page
       break;
 
     case 500:
+      // Navigate to 403 page
       break;
 
     default:
@@ -26,8 +28,7 @@ const renderByStatusCode = (statusCode: number) => {
 
 const allPendingRequestsRecord: PendingRequestRecord[] = [];
 
-const getUniqueId = (config: AxiosRequestConfig) =>
-  `url=${config.url}&method=${config.method}`;
+const getUniqueId = (config: AxiosRequestConfig) => `url=${config.url}&method=${config.method}`;
 
 axios.interceptors.request.use(
   (configurations) => {
@@ -37,13 +38,11 @@ axios.interceptors.request.use(
       allPendingRequestsRecord.push({ id: getUniqueId(configurations), cancel });
     });
 
-    configurationsLocal.withCredentials = true;
-
     return configurationsLocal;
   },
   (error) => {
     return Promise.reject(error);
-  },
+  }
 );
 
 export const removeAllPendingRequestsRecordHttp = () => {
@@ -70,7 +69,7 @@ axios.interceptors.response.use(
 
     renderByStatusCode(status);
     return Promise.reject(error);
-  },
+  }
 );
 
 export const HttpServices = {
