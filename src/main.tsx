@@ -15,5 +15,5 @@ root.render(
       <RouterProvider router={router} />
       <MiddlewareHelper />
     </Suspense>
-  </StrictMode>
+  </StrictMode>,
 );

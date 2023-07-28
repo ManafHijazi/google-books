@@ -1,10 +1,12 @@
+import './BooksCatalogue.scss';
+
 import { FC, useCallback, useEffect, useState } from 'react';
-import { showError } from '../../helpers';
 import { useNavigate } from 'react-router';
-import FilterComponent from './components/FilterComponent/FilterComponent';
+
+import { showError } from '../../helpers';
 import { BookItem, BooksResponse, GetListOfBooksService } from '../../services';
 import BookCardComponent from './components/BookCardComponent/BookCardComponent';
-import './BooksCatalogue.scss';
+import FilterComponent from './components/FilterComponent/FilterComponent';
 
 interface LocalSearchValue {
   searchQuery: string;
@@ -30,7 +32,10 @@ interface SearchOptions {
 const BooksCataloguePage: FC = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [booksResponse, setBooksResponse] = useState<BooksResponse>({ items: [], totalItems: 0 });
+  const [booksResponse, setBooksResponse] = useState<BooksResponse>({
+    items: [],
+    totalItems: 0,
+  });
   const [localSearchValue, setLocalSearchValue] = useState<LocalSearchValue>({
     searchQuery: '',
     inauthor: '',
@@ -77,8 +82,8 @@ const BooksCataloguePage: FC = () => {
   }, [getListOfBooksService]);
 
   return (
-    <div className='books-catalog-container'>
-      <div className='filter-wrapper'>
+    <div className="books-catalog-container">
+      <div className="filter-wrapper">
         <FilterComponent
           filter={filter}
           setFilter={setFilter}
@@ -89,10 +94,12 @@ const BooksCataloguePage: FC = () => {
         />
       </div>
 
-      <div className='book-list-container'>
-        <div className='books-list'>
+      <div className="book-list-container">
+        <div className="books-list">
           {isLoading
-            ? [...Array(6)].map((_, index) => <div key={index} className='book-card-loading' />)
+            ? [...Array(6)].map((_, index) => (
+                <div key={index} className="book-card-loading" />
+              ))
             : booksResponse.items.map((book: BookItem) => (
                 <BookCardComponent key={book.id} book={book} />
               ))}

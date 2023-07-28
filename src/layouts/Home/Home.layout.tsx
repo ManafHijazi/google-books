@@ -12,8 +12,8 @@ const HomeLayout = (props: HomeLayoutProps) => {
   return (
     <>
       <HeaderComponent />
-      <div className='main-layout-wrapper'>
-        <div className='container-wrapper'>{props.children}</div>
+      <div className="main-layout-wrapper">
+        <div className="container-wrapper">{props.children}</div>
       </div>
     </>
   );

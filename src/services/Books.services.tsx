@@ -32,7 +32,7 @@ const BASE_URL = 'https://www.googleapis.com/books/v1/volumes';
 
 export const GetListOfBooksService = async (
   searchQuery: string,
-  searchOptions: SearchOptions = {}
+  searchOptions: SearchOptions = {},
 ): Promise<BooksResponse> => {
   try {
     const queryString = Object.entries(searchOptions)

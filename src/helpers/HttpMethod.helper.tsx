@@ -28,21 +28,25 @@ const renderByStatusCode = (statusCode: number) => {
 
 const allPendingRequestsRecord: PendingRequestRecord[] = [];
 
-const getUniqueId = (config: AxiosRequestConfig) => `url=${config.url}&method=${config.method}`;
+const getUniqueId = (config: AxiosRequestConfig) =>
+  `url=${config.url}&method=${config.method}`;
 
 axios.interceptors.request.use(
   (configurations) => {
     const configurationsLocal = configurations;
     configurationsLocal.cancelToken = new axios.CancelToken((cancel) => {
       // Add record, record the unique value of the request and cancel method
-      allPendingRequestsRecord.push({ id: getUniqueId(configurations), cancel });
+      allPendingRequestsRecord.push({
+        id: getUniqueId(configurations),
+        cancel,
+      });
     });
 
     return configurationsLocal;
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 export const removeAllPendingRequestsRecordHttp = () => {
@@ -69,7 +73,7 @@ axios.interceptors.response.use(
 
     renderByStatusCode(status);
     return Promise.reject(error);
-  }
+  },
 );
 
 export const HttpServices = {

@@ -1,5 +1,6 @@
-import { FC } from 'react';
 import './FilterComponent.scss';
+
+import { FC } from 'react';
 
 interface LocalSearchValue {
   searchQuery: string;
@@ -40,7 +41,10 @@ const FilterComponent: FC<FilterComponentProps> = ({
   setSearchOptions,
 }) => {
   const handleSearch = () => {
-    setFilter((items) => ({ ...items, searchQuery: localSearchValue.searchQuery }));
+    setFilter((items) => ({
+      ...items,
+      searchQuery: localSearchValue.searchQuery,
+    }));
     setSearchOptions((items) => ({
       ...items,
       inauthor: localSearchValue.inauthor,
@@ -77,10 +81,10 @@ const FilterComponent: FC<FilterComponentProps> = ({
   };
 
   return (
-    <div className='search-container'>
+    <div className="search-container">
       <input
-        type='text'
-        placeholder='Search'
+        type="text"
+        placeholder="Search"
         value={localSearchValue.searchQuery || ''}
         onChange={(event) => {
           const { value } = event.target;
@@ -89,8 +93,8 @@ const FilterComponent: FC<FilterComponentProps> = ({
         }}
       />
       <input
-        type='text'
-        placeholder='Author'
+        type="text"
+        placeholder="Author"
         value={localSearchValue.inauthor || ''}
         onChange={(event) => {
           const { value } = event.target;
@@ -99,8 +103,8 @@ const FilterComponent: FC<FilterComponentProps> = ({
         }}
       />
       <input
-        type='text'
-        placeholder='Title'
+        type="text"
+        placeholder="Title"
         value={localSearchValue.intitle || ''}
         onChange={(event) => {
           const { value } = event.target;
@@ -109,8 +113,8 @@ const FilterComponent: FC<FilterComponentProps> = ({
         }}
       />
       <input
-        type='text'
-        placeholder='Publisher'
+        type="text"
+        placeholder="Publisher"
         value={localSearchValue.inpublisher || ''}
         onChange={(event) => {
           const { value } = event.target;
@@ -119,8 +123,8 @@ const FilterComponent: FC<FilterComponentProps> = ({
         }}
       />
       <input
-        type='text'
-        placeholder='Subject'
+        type="text"
+        placeholder="Subject"
         value={localSearchValue.subject || ''}
         onChange={(event) => {
           const { value } = event.target;
@@ -129,8 +133,8 @@ const FilterComponent: FC<FilterComponentProps> = ({
         }}
       />
       <input
-        type='text'
-        placeholder='isbn'
+        type="text"
+        placeholder="isbn"
         value={localSearchValue.isbn || ''}
         onChange={(event) => {
           const { value } = event.target;
@@ -139,8 +143,8 @@ const FilterComponent: FC<FilterComponentProps> = ({
         }}
       />
       <input
-        type='text'
-        placeholder='lccn'
+        type="text"
+        placeholder="lccn"
         value={localSearchValue.lccn || ''}
         onChange={(event) => {
           const { value } = event.target;
@@ -149,8 +153,8 @@ const FilterComponent: FC<FilterComponentProps> = ({
         }}
       />
       <input
-        type='text'
-        placeholder='oclc'
+        type="text"
+        placeholder="oclc"
         value={localSearchValue.oclc || ''}
         onChange={(event) => {
           const { value } = event.target;
@@ -159,11 +163,11 @@ const FilterComponent: FC<FilterComponentProps> = ({
         }}
       />
 
-      <div className='search-btn'>
+      <div className="search-btn">
         <button onClick={handleSearch}>Search</button>
       </div>
 
-      <div className='clear-btn'>
+      <div className="clear-btn">
         <button onClick={handleClear}>Clear</button>
       </div>
     </div>
