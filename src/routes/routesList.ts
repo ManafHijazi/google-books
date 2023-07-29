@@ -18,6 +18,6 @@ export const ROUTES_LIST: RoutesInterface = {
     INDEX: '/',
   },
   BOOKDETAILSPAGE: {
-    INDEX: '/bookdetails',
+    INDEX: '/bookdetails/:bookId',
   },
 };

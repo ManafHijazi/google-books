@@ -1,3 +1,10 @@
+/**
+ * BookCardComponent Component
+ *
+ * This component displays a book card with its details, including an image, title,
+ * authors, and description. It also provides a button to navigate to the book details page.
+ */
+
 import './BookCardComponent.scss';
 
 import { FC } from 'react';
@@ -5,16 +12,25 @@ import { useNavigate } from 'react-router';
 
 import { BookItem } from '../../../../services';
 
+/**
+ * Interface for props passed to the BookCardComponent.
+ */
 interface BookCardProps {
   book: BookItem;
 }
 
+/**
+ * BookCardComponent Functional Component.
+ * @param props - Props for the BookCardComponent.
+ * @returns A functional component representing the BookCardComponent.
+ */
 const BookCardComponent: FC<BookCardProps> = ({ book }) => {
   const navigate = useNavigate();
 
   return (
     <div className="book-card">
       <div className="book-card-content">
+        {/* Display book thumbnail or placeholder if not available */}
         {book.volumeInfo?.imageLinks?.thumbnail ? (
           <img
             src={book.volumeInfo.imageLinks.thumbnail}
@@ -24,10 +40,16 @@ const BookCardComponent: FC<BookCardProps> = ({ book }) => {
         ) : (
           <div className="placeholder-thumbnail"></div>
         )}
+
+        {/* Display book title */}
         <h2 className="book-title">{book?.volumeInfo?.title || 'No Title'}</h2>
+
+        {/* Display book authors or "Unknown" if not available */}
         <p className="book-authors">
           Authors: {book?.volumeInfo?.authors?.join(', ') || 'Unknown'}
         </p>
+
+        {/* Display book description or "No description available." if not available */}
         <div className="book-description-container">
           <p className="book-description">
             {book?.volumeInfo?.description || 'No description available.'}
@@ -35,10 +57,12 @@ const BookCardComponent: FC<BookCardProps> = ({ book }) => {
         </div>
       </div>
 
+      {/* Book details overlay */}
       <div className="book-overlay">
+        {/* Button to navigate to the book details page */}
         <button
           className="book-details-button"
-          onClick={() => navigate(`/bookdetails?bookId=${book.id}`)}
+          onClick={() => navigate(`/bookdetails/${book.id}`)}
         >
           Show Details
         </button>

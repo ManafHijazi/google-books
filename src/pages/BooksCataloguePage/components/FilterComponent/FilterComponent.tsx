@@ -1,7 +1,19 @@
+/**
+ * FilterComponent Component
+ *
+ * This component displays a search filter with various input fields
+ * to refine the search options for the Books Catalogue.
+ */
+
 import './FilterComponent.scss';
 
 import { FC } from 'react';
 
+import { SearchOptions } from '../../../../services';
+
+/**
+ * Interface for local search values used in the filter.
+ */
 interface LocalSearchValue {
   searchQuery: string;
   inauthor: string;
@@ -13,33 +25,31 @@ interface LocalSearchValue {
   oclc: string;
 }
 
-interface SearchOptions {
-  inauthor: string;
-  intitle: string;
-  inpublisher: string;
-  subject: string;
-  isbn: string;
-  lccn: string;
-  oclc: string;
-}
-
+/**
+ * Interface for props passed to the FilterComponent.
+ */
 interface FilterComponentProps {
   localSearchValue: LocalSearchValue;
   setLocalSearchValue: React.Dispatch<React.SetStateAction<LocalSearchValue>>;
-  filter: { searchQuery: string };
   setFilter: React.Dispatch<React.SetStateAction<{ searchQuery: string }>>;
-  searchOptions: SearchOptions;
   setSearchOptions: React.Dispatch<React.SetStateAction<SearchOptions>>;
 }
 
+/**
+ * FilterComponent Functional Component.
+ * @param props - Props for the FilterComponent.
+ * @returns A functional component representing the FilterComponent.
+ */
 const FilterComponent: FC<FilterComponentProps> = ({
-  localSearchValue,
-  setLocalSearchValue,
-  filter,
   setFilter,
-  searchOptions,
+  localSearchValue,
   setSearchOptions,
+  setLocalSearchValue,
 }) => {
+  /**
+   * Function to handle the search action.
+   * It updates the filter and search options based on local search values.
+   */
   const handleSearch = () => {
     setFilter((items) => ({
       ...items,
@@ -57,6 +67,10 @@ const FilterComponent: FC<FilterComponentProps> = ({
     }));
   };
 
+  /**
+   * Function to handle the clear action.
+   * It resets the filter, search options, and local search values to their initial state.
+   */
   const handleClear = () => {
     setFilter({ searchQuery: 'test' });
     setSearchOptions({
@@ -82,13 +96,13 @@ const FilterComponent: FC<FilterComponentProps> = ({
 
   return (
     <div className="search-container">
+      {/* Input fields for search and filtering */}
       <input
         type="text"
         placeholder="Search"
         value={localSearchValue.searchQuery || ''}
         onChange={(event) => {
           const { value } = event.target;
-
           setLocalSearchValue((items) => ({ ...items, searchQuery: value }));
         }}
       />
@@ -98,7 +112,6 @@ const FilterComponent: FC<FilterComponentProps> = ({
         value={localSearchValue.inauthor || ''}
         onChange={(event) => {
           const { value } = event.target;
-
           setLocalSearchValue((items) => ({ ...items, inauthor: value }));
         }}
       />
@@ -108,7 +121,6 @@ const FilterComponent: FC<FilterComponentProps> = ({
         value={localSearchValue.intitle || ''}
         onChange={(event) => {
           const { value } = event.target;
-
           setLocalSearchValue((items) => ({ ...items, intitle: value }));
         }}
       />
@@ -118,7 +130,6 @@ const FilterComponent: FC<FilterComponentProps> = ({
         value={localSearchValue.inpublisher || ''}
         onChange={(event) => {
           const { value } = event.target;
-
           setLocalSearchValue((items) => ({ ...items, inpublisher: value }));
         }}
       />
@@ -128,7 +139,6 @@ const FilterComponent: FC<FilterComponentProps> = ({
         value={localSearchValue.subject || ''}
         onChange={(event) => {
           const { value } = event.target;
-
           setLocalSearchValue((items) => ({ ...items, subject: value }));
         }}
       />
@@ -138,7 +148,6 @@ const FilterComponent: FC<FilterComponentProps> = ({
         value={localSearchValue.isbn || ''}
         onChange={(event) => {
           const { value } = event.target;
-
           setLocalSearchValue((items) => ({ ...items, isbn: value }));
         }}
       />
@@ -148,7 +157,6 @@ const FilterComponent: FC<FilterComponentProps> = ({
         value={localSearchValue.lccn || ''}
         onChange={(event) => {
           const { value } = event.target;
-
           setLocalSearchValue((items) => ({ ...items, lccn: value }));
         }}
       />
@@ -158,15 +166,14 @@ const FilterComponent: FC<FilterComponentProps> = ({
         value={localSearchValue.oclc || ''}
         onChange={(event) => {
           const { value } = event.target;
-
           setLocalSearchValue((items) => ({ ...items, oclc: value }));
         }}
       />
 
+      {/* Buttons for search and clear actions */}
       <div className="search-btn">
         <button onClick={handleSearch}>Search</button>
       </div>
-
       <div className="clear-btn">
         <button onClick={handleClear}>Clear</button>
       </div>
