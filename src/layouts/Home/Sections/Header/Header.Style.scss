@@ -11,6 +11,12 @@
   z-index: 99;
   box-shadow: 0 5px 15px 0 rgba(172, 172, 172, 0.75);
 
+  button {
+    background-color: transparent;
+    border: 0 solid transparent;
+    cursor: pointer;
+  }
+
   img {
     width: 10rem;
   }
