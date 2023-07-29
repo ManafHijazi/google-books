@@ -7,7 +7,7 @@
 
 import './FilterComponent.scss';
 
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 import { SearchOptions } from '../../../../services';
 
@@ -100,6 +100,7 @@ const FilterComponent: FC<FilterComponentProps> = ({
       <input
         type="text"
         placeholder="Search"
+        data-testid="search-input"
         value={localSearchValue.searchQuery || ''}
         onChange={(event) => {
           const { value } = event.target;

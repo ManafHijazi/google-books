@@ -7,7 +7,7 @@
 
 import './BookCardComponent.scss';
 
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useNavigate } from 'react-router';
 
 import { BookItem } from '../../../../services';
@@ -28,21 +28,25 @@ const BookCardComponent: FC<BookCardProps> = ({ book }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="book-card">
+    <div data-testid="book-card" className="book-card">
       <div className="book-card-content">
         {/* Display book thumbnail or placeholder if not available */}
         {book.volumeInfo?.imageLinks?.thumbnail ? (
           <img
-            src={book.volumeInfo.imageLinks.thumbnail}
-            alt={book.volumeInfo.title || 'No Title'}
+            width="400px"
+            height="300px"
             className="book-thumbnail"
+            alt={book.volumeInfo.title || 'No Title'}
+            src={book.volumeInfo.imageLinks.thumbnail}
           />
         ) : (
           <div className="placeholder-thumbnail"></div>
         )}
 
         {/* Display book title */}
-        <h2 className="book-title">{book?.volumeInfo?.title || 'No Title'}</h2>
+        <h2 data-testid="book-title" className="book-title">
+          {book?.volumeInfo?.title || 'No Title'}
+        </h2>
 
         {/* Display book authors or "Unknown" if not available */}
         <p className="book-authors">

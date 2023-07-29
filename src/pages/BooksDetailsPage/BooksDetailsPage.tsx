@@ -1,6 +1,6 @@
 import './BooksDetails.scss';
 
-import { FC, useCallback, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
 import { showError } from '../../helpers';
@@ -95,6 +95,8 @@ const BooksDetailsPage: FC = () => {
               <div className="book-image-info-wrapper">
                 {bookDetailsResponse.volumeInfo?.imageLinks?.thumbnail ? (
                   <img
+                    width="400px"
+                    height="300px"
                     src={bookDetailsResponse.volumeInfo.imageLinks.thumbnail}
                     alt={bookDetailsResponse.volumeInfo.title || 'No Title'}
                     className="book-thumbnail"

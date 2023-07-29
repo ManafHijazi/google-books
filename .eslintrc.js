@@ -5,7 +5,7 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: 'module',
     ecmaFeatures: {
-      jsx: true,
+      tsx: true,
     },
   },
   settings: {
@@ -15,7 +15,7 @@ module.exports = {
     'import/resolver': {
       node: {
         paths: ['src'],
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        extensions: ['.js', '.ts', '.tsx'],
       },
     },
   },
@@ -23,6 +23,7 @@ module.exports = {
     browser: true,
     amd: true,
     node: true,
+    jest: true,
   },
   extends: [
     'eslint:recommended',

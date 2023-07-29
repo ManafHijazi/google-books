@@ -5,10 +5,9 @@
  * It includes a search filter to refine the search results and pagination buttons
  * to navigate through the list of books.
  */
-
 import './BooksCatalogue.scss';
 
-import { FC, useCallback, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 
 // Importing helper functions and services
 import { showError } from '../../helpers';
@@ -162,13 +161,26 @@ const BooksCataloguePage: FC = () => {
       <div className="book-list-container">
         <div className="books-list">
           {/* Display loading skeleton or book cards */}
-          {isLoading
-            ? [...Array(8)].map((_, index) => (
-                <div key={index} className="book-card-loading" />
-              ))
-            : booksResponse.items.map((book: BookItem) => (
-                <BookCardComponent key={book.id} book={book} />
-              ))}
+          {isLoading &&
+            [...Array(8)].map((_, index) => (
+              <div
+                key={index}
+                data-testid="book-card-loading"
+                className="book-card-loading"
+              />
+            ))}
+
+          {!isLoading &&
+            booksResponse.items.length > 0 &&
+            booksResponse.items.map((book: BookItem) => (
+              <BookCardComponent key={book.id} book={book} />
+            ))}
+
+          <div className="no-books-message" data-testid="no-books-message">
+            {!isLoading && booksResponse.items.length === 0 && (
+              <span>No books found!</span>
+            )}
+          </div>
         </div>
       </div>
     </div>

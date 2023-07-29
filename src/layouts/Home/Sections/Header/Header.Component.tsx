@@ -7,7 +7,7 @@ import googleBooksLogo from '../../../../assets/images/logo.png';
 const HeaderComponent: FC = () => {
   return (
     <div className="header-wrapper">
-      <img src={googleBooksLogo} alt="google books" />
+      <img width="50px" height="30px" src={googleBooksLogo} alt="google books" />
     </div>
   );
 };
